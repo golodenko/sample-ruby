@@ -21,7 +21,30 @@ module Algorithms
 
   end
 
-  def smallest_rectangle_of_aspect(ratio, rectangle); end
+  def smallest_rectangle_of_aspect(ratio, rectangle)
+    width = rectangle[0]
+    height = rectangle[1]
+
+    if width >= height && height.to_f/width.to_f < ratio
+      a = [width, height].max
+      b = a * ratio
+    else
+      if width < height && height.to_f/width.to_f >= ratio
+        b = [width, height].max
+        a = b / ratio
+      else
+        if ratio < 1
+          b = [width, height].min
+          a = b / ratio
+        else
+          a = [width, height].min
+          b = a * ratio
+        end
+      end
+    end
+
+    [a, b]
+  end
 
   def parse_time(str); end
 end
