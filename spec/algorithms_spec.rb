@@ -164,13 +164,20 @@ RSpec.describe 'Algorithms' do
     end
   end
 
-  # describe '.parse_time' do
-  #   it 'converts 09:00 into number of seconds into the day' do
-  #     expect(Algorithms.parse_time('09:00')).to eq(32_400)
-  #   end
+  describe '.parse_time' do
+    context "with valid time" do
+      it 'converts 09:00 into number of seconds into the day' do
+        expect(Algorithms.parse_time('09:00')).to eq(32_400)
+      end
 
-  #   it 'converts 17:30 into number of seconds into the day' do
-  #     expect(Algorithms.parse_time('17:30')).to eq(63_000)
-  #   end
-  # end
+      it 'converts 17:30 into number of seconds into the day' do
+        expect(Algorithms.parse_time('17:30')).to eq(63_000)
+      end
+    end
+    context "with invalid time" do
+      it 'raises error' do
+        expect { Algorithms.parse_time('170:30') }.to raise_error('invalid date')
+      end
+    end
+  end
 end

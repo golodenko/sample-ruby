@@ -46,5 +46,8 @@ module Algorithms
     [a, b]
   end
 
-  def parse_time(str); end
+  def parse_time(str)
+    parsed_time = DateTime.parse(str)
+    seconds = parsed_time.hour * 3600 + parsed_time.min * 60
+  end
 end
