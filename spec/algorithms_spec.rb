@@ -173,6 +173,10 @@ RSpec.describe 'Algorithms' do
       it 'converts 17:30 into number of seconds into the day' do
         expect(Algorithms.parse_time('17:30')).to eq(63_000)
       end
+
+      it 'converts 00:00 into number of seconds into the day' do
+        expect(Algorithms.parse_time('00:00')).to eq(0)
+      end
     end
     context "with invalid time" do
       it 'raises error' do
