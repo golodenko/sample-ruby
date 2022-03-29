@@ -1,20 +1,21 @@
-require 'pry'
 # frozen_string_literal: true
+
+require 'pry'
 
 module Algorithms
   module_function
 
-  INT_ERROR = 'FizzBuzz param should be positive Integer'.freeze
+  INT_ERROR = 'FizzBuzz param should be positive Integer'
 
   def fizzbuzz(max)
     raise INT_ERROR if !max.is_a?(Integer) || max < 1
 
-    result = (1..max).map do |i|
-      if i % 15 == 0
+    (1..max).map do |i|
+      if (i % 15).zero?
         'fizzbuzz'
-      elsif i % 3 == 0
+      elsif (i % 3).zero?
         'fizz'
-      elsif i % 5 == 0
+      elsif (i % 5).zero?
         'buzz'
       else
         i
@@ -26,10 +27,10 @@ module Algorithms
     width = rectangle[0]
     height = rectangle[1]
 
-    if width >= height && height.to_f / width.to_f < ratio
+    if width >= height && height.to_f / width < ratio
       a = [width, height].max
       b = a * ratio
-    elsif width < height && height.to_f / width.to_f >= ratio
+    elsif width < height && height.to_f / width >= ratio
       b = [width, height].max
       a = b / ratio
     elsif ratio < 1
@@ -45,6 +46,6 @@ module Algorithms
 
   def parse_time(str)
     parsed_time = DateTime.parse(str)
-    seconds = parsed_time.hour * 3600 + parsed_time.min * 60
+    parsed_time.hour * 3600 + parsed_time.min * 60
   end
 end
