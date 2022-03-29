@@ -49,27 +49,27 @@ RSpec.describe 'PhotoStore' do
     end
   end
 
-  # describe '.calculate_completion_time' do
-  #   let(:opening_hours) do
-  #     {
-  #       'Mon' => ['09:00', '17:30'],
-  #       'Tue' => ['09:00', '17:30'],
-  #       'Wed' => ['09:00', '17:30'],
-  #       'Thu' => ['09:00', '17:30'],
-  #       'Fri' => ['09:00', '17:00']
-  #     }
-  #   end
+  describe '.calculate_completion_time' do
+    let(:opening_hours) do
+      {
+        'Mon' => ['09:00', '17:30'],
+        'Tue' => ['09:00', '17:30'],
+        'Wed' => ['09:00', '17:30'],
+        'Thu' => ['09:00', '17:30'],
+        'Fri' => ['09:00', '17:00']
+      }
+    end
 
-  #   it 'calculates when my prints will be ready if they take 2 hours to process and I order them at 11:00 on Tuesday' do
-  #     placed_time                = Time.parse('2014-12-02 11:00 UTC')
-  #     calculated_completion_time = PhotoStore.calculate_completion_time(placed_time, 2, opening_hours)
-  #     expect(calculated_completion_time).to eq(Time.parse('2014-12-02 13:00 UTC'))
-  #   end
+    it 'calculates when my prints will be ready if they take 2 hours to process and I order them at 11:00 on Tuesday' do
+      placed_time                = Time.parse('2014-12-02 11:00 UTC')
+      calculated_completion_time = PhotoStore.calculate_completion_time(placed_time, 2, opening_hours)
+      expect(calculated_completion_time).to eq(Time.parse('2014-12-02 13:00 UTC'))
+    end
 
-  #   it 'calculates when my prints will be ready if they take 2 hours to process and I order them at 16:30 on Friday' do
-  #     placed_time                = Time.parse('2014-12-05 16:30 UTC')
-  #     calculated_completion_time = PhotoStore.calculate_completion_time(placed_time, 2, opening_hours)
-  #     expect(calculated_completion_time).to eq(Time.parse('2014-12-08 10:30 UTC'))
-  #   end
+    it 'calculates when my prints will be ready if they take 2 hours to process and I order them at 16:30 on Friday' do
+      placed_time                = Time.parse('2014-12-05 16:30 UTC')
+      calculated_completion_time = PhotoStore.calculate_completion_time(placed_time, 2, opening_hours)
+      expect(calculated_completion_time).to eq(Time.parse('2014-12-08 10:30 UTC'))
+    end
   end
 end

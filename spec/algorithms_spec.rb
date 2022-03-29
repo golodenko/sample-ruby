@@ -4,39 +4,39 @@ require 'algorithms'
 
 RSpec.describe 'Algorithms' do
   describe '.fizzbuzz' do
-    context "when max param is" do
-      context "blank" do
+    context 'when max param is' do
+      context 'blank' do
         it 'raises error' do
-          expect { Algorithms.fizzbuzz("") }.to raise_error('FizzBuzz param should be positive Integer')
+          expect { Algorithms.fizzbuzz('') }.to raise_error('FizzBuzz param should be positive Integer')
         end
       end
 
-      context "negative" do
+      context 'negative' do
         it 'raises error' do
           expect { Algorithms.fizzbuzz(-1) }.to raise_error('FizzBuzz param should be positive Integer')
         end
       end
 
-      context "nil" do
+      context 'nil' do
         it 'raises error' do
           expect { Algorithms.fizzbuzz(nil) }.to raise_error('FizzBuzz param should be positive Integer')
         end
       end
 
-      context "string" do
+      context 'string' do
         it 'raises error' do
-          expect { Algorithms.fizzbuzz("22") }.to raise_error('FizzBuzz param should be positive Integer')
+          expect { Algorithms.fizzbuzz('22') }.to raise_error('FizzBuzz param should be positive Integer')
         end
       end
 
-      context "0" do
+      context '0' do
         it 'raises error' do
           expect { Algorithms.fizzbuzz(0) }.to raise_error('FizzBuzz param should be positive Integer')
         end
       end
     end
 
-    context "when max param is valid" do
+    context 'when max param is valid' do
       it 'returns fizzbuzz to 3, returning the number or "fizz" if the number is a multiple of 3' do
         expect(Algorithms.fizzbuzz(3)).to eq([1, 2, 'fizz'])
       end
@@ -51,13 +51,13 @@ RSpec.describe 'Algorithms' do
 
       it 'returns fizzbuzz to 15 with rules above and multiples of 3 and 5 are "fizzbuzz"' do
         expect(Algorithms.fizzbuzz(15)).to eq([1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz', 11, 'fizz', 13, 14,
-                                              'fizzbuzz'])
+                                               'fizzbuzz'])
       end
 
       it 'returns fizzbuzz to 30' do
         expect(Algorithms.fizzbuzz(30)).to eq([1, 2, 'fizz', 4, 'buzz', 'fizz', 7, 8, 'fizz', 'buzz', 11, 'fizz', 13, 14,
-                                              'fizzbuzz', 16, 17, 'fizz', 19, 'buzz', 'fizz', 22, 23, 'fizz', 'buzz', 26,
-                                              'fizz', 28, 29, 'fizzbuzz'])
+                                               'fizzbuzz', 16, 17, 'fizz', 19, 'buzz', 'fizz', 22, 23, 'fizz', 'buzz', 26,
+                                               'fizz', 28, 29, 'fizzbuzz'])
       end
     end
   end
@@ -165,7 +165,7 @@ RSpec.describe 'Algorithms' do
   end
 
   describe '.parse_time' do
-    context "with valid time" do
+    context 'with valid time' do
       it 'converts 09:00 into number of seconds into the day' do
         expect(Algorithms.parse_time('09:00')).to eq(32_400)
       end
@@ -178,7 +178,7 @@ RSpec.describe 'Algorithms' do
         expect(Algorithms.parse_time('00:00')).to eq(0)
       end
     end
-    context "with invalid time" do
+    context 'with invalid time' do
       it 'raises error' do
         expect { Algorithms.parse_time('170:30') }.to raise_error('invalid date')
       end
