@@ -15,13 +15,13 @@ RSpec.describe 'PhotoStore' do
     end
 
     it 'returns the closing time for the day from the opening hours' do
-      target_day = Time.mktime(2014, 12, 2, 12)
-      expected_closing_time = Time.mktime(2014, 12, 2, 17, 30)
+      target_day = Time.utc(2014, 12, 2, 12)
+      expected_closing_time = Time.utc(2014, 12, 2, 17, 30)
       expect(PhotoStore.finish_time_for_day(target_day, opening_hours)).to eq(expected_closing_time)
     end
 
     it 'returns false if there are no opening times for the given day' do
-      target_day = Time.mktime(2014, 12, 6, 12)
+      target_day = Time.utc(2014, 12, 6, 12)
       expect(PhotoStore.finish_time_for_day(target_day, opening_hours)).to eq(false)
     end
   end
@@ -38,13 +38,13 @@ RSpec.describe 'PhotoStore' do
     end
 
     it 'returns the opening time for the day from the opening hours' do
-      target_day            = Time.mktime(2014, 12, 2, 10)
-      expected_opening_time = Time.mktime(2014, 12, 2, 9, 0)
+      target_day            = Time.utc(2014, 12, 2, 10)
+      expected_opening_time = Time.utc(2014, 12, 2, 9, 0)
       expect(PhotoStore.start_time_for_day(target_day, opening_hours)).to eq(expected_opening_time)
     end
 
     it 'returns false if there are no opening times for the given day' do
-      target_day = Time.mktime(2014, 12, 6, 10)
+      target_day = Time.utc(2014, 12, 6, 10)
       expect(PhotoStore.start_time_for_day(target_day, opening_hours)).to eq(false)
     end
   end

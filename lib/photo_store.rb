@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'pry'
 require 'active_support/all'
 
@@ -10,27 +12,28 @@ module PhotoStore
   # - check for different day of the week name e.g. Mon, Mo, Monday
   # - add timezone check: if we parse some stores info we need
   # to store it's timezone and compare with client's
-  def finish_time_for_day(date, opening_hours, utc = false)
+  def finish_time_for_day(date, opening_hours)
     return false unless (work_hours = work_hours_for_day(date, opening_hours))
 
-    mix_date_time(date, work_hours[1], utc)
+    mix_date_time(date, work_hours[1])
   end
 
-  def start_time_for_day(date, opening_hours, utc = false)
+  def start_time_for_day(date, opening_hours)
     return false unless (work_hours = work_hours_for_day(date, opening_hours))
 
-    mix_date_time(date, work_hours[0], utc)
+    mix_date_time(date, work_hours[0])
   end
 
   # work_hours gem should be used here, but ok, let's invent some wheels :P
+  # method is long becuse it's class method, i would rather use instance method with instance vars
   def calculate_completion_time(placed_at, num_hours, opening_hours)
     first_day = true
     order_time = num_hours * 60
     timestamp = placed_at
 
     while order_time.positive?
-      start_of_day = start_time_for_day(timestamp, opening_hours, true)
-      end_of_day = finish_time_for_day(timestamp, opening_hours, true)
+      start_of_day = start_time_for_day(timestamp, opening_hours)
+      end_of_day = finish_time_for_day(timestamp, opening_hours)
 
       unless start_of_day && end_of_day
         first_day = false
@@ -63,9 +66,7 @@ module PhotoStore
     work_hours.map { |time| Time.parse(time) }
   end
 
-  def mix_date_time(date, time, utc = false)
-    return Time.utc(date.year, date.month, date.day, time.hour, time.min) if utc
-
-    Time.local(date.year, date.month, date.day, time.hour, time.min)
+  def mix_date_time(date, time)
+    Time.utc(date.year, date.month, date.day, time.hour, time.min)
   end
 end

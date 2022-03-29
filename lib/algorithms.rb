@@ -2,6 +2,7 @@
 
 require 'pry'
 
+# Algorithms
 module Algorithms
   module_function
 
@@ -26,22 +27,18 @@ module Algorithms
   def smallest_rectangle_of_aspect(ratio, rectangle)
     width = rectangle[0]
     height = rectangle[1]
+    max = [width, height].max
+    min = [width, height].min
 
     if width >= height && height.to_f / width < ratio
-      a = [width, height].max
-      b = a * ratio
+      [max, max * ratio]
     elsif width < height && height.to_f / width >= ratio
-      b = [width, height].max
-      a = b / ratio
+      [max / ratio, max]
     elsif ratio < 1
-      b = [width, height].min
-      a = b / ratio
+      [min / ratio, min]
     else
-      a = [width, height].min
-      b = a * ratio
+      [min, min * ratio]
     end
-
-    [a, b]
   end
 
   def parse_time(str)

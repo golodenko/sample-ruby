@@ -63,6 +63,8 @@ RSpec.describe 'Algorithms' do
     end
   end
 
+  # we don't need those cases we only need 4
+  # but i'm keeping those for making sure that all suggested specs are actually succeeded
   describe '.smallest_rectangle_of_aspect' do
     it 'finds the smallest rectangle of aspect ratio 1.0 that contains a rectangle of size 300x500' do
       expect(Algorithms.smallest_rectangle_of_aspect(1.0, [300, 500])).to eq([500, 500])
